@@ -1,3 +1,4 @@
+import 'package:donut_app_2a_martinez/utils/donut_tile.dart';
 import 'package:flutter/material.dart';
 
 class DonutTab extends StatelessWidget {
@@ -20,7 +21,9 @@ class DonutTab extends StatelessWidget {
         // Encargado de organizar la cuadrícula (El grid Delegate)
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             // Determinar el número de columnas (Axis - Eje)
-            crossAxisCount: 2),
+            crossAxisCount: 2,
+            // Relación de aspecto
+            childAspectRatio: 1 / 1.5),
         itemBuilder: (context, index) {
           // Elemento individual de una cuadrícula (Tile)
           return DonutTile(
