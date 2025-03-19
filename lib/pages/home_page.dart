@@ -15,27 +15,27 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Widget> myTabs = [
-    // Donut Tab
+    //Donut tab
     MyTab(iconPath: 'lib/icons/donut.png'),
-    // Burger Tab
+    //Burger tab
     MyTab(iconPath: 'lib/icons/burger.png'),
-    // Smoothie Tab
+    //Smoothie tab
     MyTab(iconPath: 'lib/icons/smoothie.png'),
-    // Pancake Tab
+    //Pancake tab
     MyTab(iconPath: 'lib/icons/pancakes.png'),
-    // Pizza tab
+    //Pizza tab
     MyTab(iconPath: 'lib/icons/pizza.png'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    // Widget para gestionar
+    //Este widget sirve para gestionar las pestañas
     return DefaultTabController(
       length: myTabs.length,
       child: Scaffold(
           appBar: AppBar(
             backgroundColor: Colors.transparent,
-            //ícono de la izquierda
+            //Icono de la izquierda
             leading: Icon(
               Icons.menu,
               color: Colors.grey[800],
@@ -55,10 +55,7 @@ class _HomePageState extends State<HomePage> {
                     const EdgeInsets.symmetric(horizontal: 36, vertical: 18),
                 child: Row(
                   children: [
-                    Text(
-                      "I want to ",
-                      style: TextStyle(fontSize: 32),
-                    ),
+                    Text("I want to ", style: TextStyle(fontSize: 32)),
                     Text(
                       "Eat",
                       style: TextStyle(
@@ -72,9 +69,9 @@ class _HomePageState extends State<HomePage> {
                   ],
                 ),
               ),
-              //Tab bar (Pestañas)
+              //Tab bar(Pestañas)
               TabBar(tabs: myTabs),
-              //Tab bar view (Contenido de pestañas)
+              //Tab bar View(Contenido de pestañas)
               Expanded(
                   child: TabBarView(
                 children: [
@@ -84,9 +81,43 @@ class _HomePageState extends State<HomePage> {
                   PancakesTab(),
                   PizzaTab(),
                 ],
-              ))
-
+              )),
               //Carrito
+              Container(
+                color: Colors.white,
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(left: 28),
+                      child: Column(
+                        //Alinear a la izquierda (horizontal)
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            '2 Items | \$45',
+                            style: TextStyle(
+                                fontSize: 18, fontWeight: FontWeight.bold),
+                          ),
+                          const Text(
+                            'Delivery Charges Included',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ],
+                      ),
+                    ),
+                    ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: Colors.pink,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 24, vertical: 12)),
+                        child: const Text('View Cart',
+                            style: TextStyle(color: Colors.white))),
+                  ],
+                ),
+              )
             ],
           )),
     );
