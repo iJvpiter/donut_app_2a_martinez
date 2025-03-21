@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 
 class BurgerTile extends StatelessWidget {
   final String donutFlavor;
-  final double donutPrice; // Ahora es double en lugar de String
+  final String donutPrice;
   final dynamic
-      donutColor; // dynamic porque será de tipo Color y también usará []
+      donutColor; //dynamic porque será de tipo Color y también usará []
   final String imageName;
   final String donutStore;
-  final VoidCallback onAddToCart; // Nueva función para añadir al carrito
+  final VoidCallback onAddToCart;
 
   const BurgerTile({
     super.key,
@@ -16,7 +16,7 @@ class BurgerTile extends StatelessWidget {
     required this.donutColor,
     required this.imageName,
     required this.donutStore,
-    required this.onAddToCart, // Se agrega este parámetro
+    required this.onAddToCart,
   });
 
   @override
@@ -28,7 +28,7 @@ class BurgerTile extends StatelessWidget {
             color: donutColor[50], borderRadius: BorderRadius.circular(24)),
         child: Column(
           children: [
-            // Price Tag
+            //Price Tag
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
@@ -42,7 +42,7 @@ class BurgerTile extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 8, horizontal: 18),
                   child: Text(
-                    '\$${donutPrice.toStringAsFixed(2)}', // Muestra 2 decimales
+                    '\$$donutPrice',
                     style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -52,19 +52,20 @@ class BurgerTile extends StatelessWidget {
               ],
             ),
 
-            // Donut Picture
+            //Donut Picture
             Padding(
               padding:
                   const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12),
               child: Image.asset(imageName),
             ),
 
-            // Donut Flavor
+            //Donut Flavor
             Text(donutFlavor,
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 18)),
 
-            // Love icon + add button
+            //Love icon + add buton
+            //Corazon abajo a la izquierda y un carrito de compras a la derecha
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Row(

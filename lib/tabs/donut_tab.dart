@@ -6,37 +6,16 @@ class DonutTab extends StatelessWidget {
 
   DonutTab({required this.onAddToCart});
 
-  // Lista de donas
   final List donutsOnSale = [
-    // [ donutFlavor, donutStore, donutPrice,  donutColor, imageName ]
-    [
-      "Ice Cream",
-      "Krispy Kreme",
-      36.0,
-      Colors.blue,
-      "lib/images/icecream_donut.png"
-    ],
-    [
-      "Strawberry",
-      "Dunkin donuts",
-      45.0,
-      Colors.red,
-      "lib/images/strawberry_donut.png"
-    ],
-    [
-      "Grape Ape",
-      "Krispy Kreme",
-      84.0,
-      Colors.purple,
-      "lib/images/grape_donut.png"
-    ],
-    [
-      "Choco",
-      "Dunkin donuts",
-      95.0,
-      Colors.brown,
-      "lib/images/chocolate_donut.png"
-    ],
+    // [ donutFlavor, donutPrice, donutColor, imageName ]
+    ["Ice Cream", "36", Colors.blue, "lib/images/icecream_donut.png"],
+    ["Strawberry", "45", Colors.red, "lib/images/strawberry_donut.png"],
+    ["Grape Ape", "84", Colors.purple, "lib/images/grape_donut.png"],
+    ["Choco", "95", Colors.brown, "lib/images/chocolate_donut.png"],
+    ["Plain donut", "36", Colors.blue, "lib/images/icecream_donut.png"],
+    ["Zelda Donut", "45", Colors.red, "lib/images/strawberry_donut.png"],
+    ["Spicy", "50", Colors.purple, "lib/images/grape_donut.png"],
+    ["Sweets galore", "35", Colors.brown, "lib/images/chocolate_donut.png"],
   ];
 
   @override
@@ -47,13 +26,20 @@ class DonutTab extends StatelessWidget {
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2, childAspectRatio: 1 / 1.5),
         itemBuilder: (context, index) {
+          double price = 0.0;
+          try {
+            price = double.parse(donutsOnSale[index][1]);
+          } catch (e) {
+            print("Error parsing price: ${donutsOnSale[index][1]}");
+          }
+
           return DonutTile(
             donutFlavor: donutsOnSale[index][0],
-            donutStore: donutsOnSale[index][1],
-            donutPrice: donutsOnSale[index][2],
-            donutColor: donutsOnSale[index][3],
-            imageName: donutsOnSale[index][4],
-            onAddToCart: () => onAddToCart(donutsOnSale[index][2]),
+            donutPrice: price,
+            donutColor: donutsOnSale[index][2],
+            imageName: donutsOnSale[index][3],
+            donutStore: '',
+            onAddToCart: () => onAddToCart(price),
           );
         });
   }

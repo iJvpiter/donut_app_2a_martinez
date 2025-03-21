@@ -6,55 +6,83 @@ class PancakesTab extends StatelessWidget {
 
   PancakesTab({required this.onAddToCart});
 
-  // Lista de donas
   final List donutsOnSale = [
-    // [ donutFlavor, donutStore, donutPrice,  donutColor, imageName ]
     [
-      "Ice Cream",
-      "Krispy Kreme",
-      36.0,
+      "Ice Cream Pancake",
+      "36",
       Colors.blue,
-      "lib/images/icecream_donut.png"
+      "lib/images/purepng.com-pancakepancakehotcakegriddlecakeflapjack-1411528648897qeapn.png"
     ],
     [
-      "Strawberry",
-      "Dunkin donuts",
-      45.0,
+      "Strawberry Pancake",
+      "45",
       Colors.red,
-      "lib/images/strawberry_donut.png"
+      "lib/images/pngimg.com - pancake_PNG99.png"
     ],
     [
-      "Grape Ape",
-      "Krispy Kreme",
-      84.0,
+      "Pancake Grape",
+      "50",
       Colors.purple,
-      "lib/images/grape_donut.png"
+      "lib/images/pngimg.com - pancake_PNG108.png"
     ],
     [
-      "Choco",
-      "Dunkin donuts",
-      95.0,
+      "Choco Pancake",
+      "80",
       Colors.brown,
-      "lib/images/chocolate_donut.png"
+      "lib/images/pngimg.com - pancake_PNG116.png"
+    ],
+    [
+      "Skibidi Pancake",
+      "36",
+      Colors.blue,
+      "lib/images/pngimg.com - pancake_PNG120.png"
+    ],
+    [
+      "Plain Pancake",
+      "15",
+      Colors.red,
+      "lib/images/pngtree-strawberry-pancakes-png-png-image_11598617.png"
+    ],
+    [
+      "Pancake with some cheese",
+      "25",
+      Colors.purple,
+      "lib/images/Noshu-PancakeMix-LC-Hero-750px.png"
+    ],
+    [
+      "Soft Pancake",
+      "10",
+      Colors.brown,
+      "lib/images/pancake-with-ai-generated-free-png.png"
     ],
   ];
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-        itemCount: donutsOnSale.length,
-        padding: const EdgeInsets.all(12),
-        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, childAspectRatio: 1 / 1.5),
-        itemBuilder: (context, index) {
-          return DonutTile(
-            donutFlavor: donutsOnSale[index][0],
-            donutStore: donutsOnSale[index][1],
-            donutPrice: donutsOnSale[index][2],
-            donutColor: donutsOnSale[index][3],
-            imageName: donutsOnSale[index][4],
-            onAddToCart: () => onAddToCart(donutsOnSale[index][2]),
-          );
-        });
+      itemCount: donutsOnSale.length,
+      padding: const EdgeInsets.all(12),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        childAspectRatio: 1 / 1.5,
+      ),
+      itemBuilder: (context, index) {
+        double price = 0.0;
+        try {
+          price = double.parse(donutsOnSale[index][1]);
+        } catch (e) {
+          print("Error parsing price: ${donutsOnSale[index][1]}");
+        }
+
+        return DonutTile(
+          donutFlavor: donutsOnSale[index][0],
+          donutPrice: price,
+          donutColor: donutsOnSale[index][2],
+          imageName: donutsOnSale[index][3],
+          donutStore: '',
+          onAddToCart: () => onAddToCart(price),
+        );
+      },
+    );
   }
 }
