@@ -27,6 +27,16 @@ class _HomePageState extends State<HomePage> {
     MyTab(iconPath: 'lib/icons/pizza.png'),
   ];
 
+  int totalItems = 0;
+  double totalPrice = 0.0;
+
+  void addToCart(double price) {
+    setState(() {
+      totalItems++;
+      totalPrice += price;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     //Este widget sirve para gestionar las pestañas
@@ -41,8 +51,8 @@ class _HomePageState extends State<HomePage> {
               color: Colors.grey[800],
             ),
             actions: [
-              Padding(
-                padding: const EdgeInsets.only(right: 24.0),
+              const Padding(
+                padding: EdgeInsets.only(right: 24.0),
                 child: Icon(Icons.person),
               )
             ],
@@ -55,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                     const EdgeInsets.symmetric(horizontal: 36, vertical: 18),
                 child: Row(
                   children: [
-                    Text("I want to ", style: TextStyle(fontSize: 32)),
+                    const Text("I want to ", style: TextStyle(fontSize: 32)),
                     Text(
                       "Eat",
                       style: TextStyle(
@@ -75,14 +85,14 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                   child: TabBarView(
                 children: [
-                  DonutTab(),
-                  BurgerTab(),
-                  SmoothieTab(),
-                  PancakesTab(),
-                  PizzaTab(),
+                  DonutTab(onAddToCart: addToCart),
+                  BurgerTab(onAddToCart: addToCart),
+                  SmoothieTab(onAddToCart: addToCart),
+                  PancakesTab(onAddToCart: addToCart),
+                  PizzaTab(onAddToCart: addToCart),
                 ],
               )),
-              //Carrito
+              // Carrito
               Container(
                 color: Colors.white,
                 padding: const EdgeInsets.all(16),
@@ -95,9 +105,9 @@ class _HomePageState extends State<HomePage> {
                         //Alinear a la izquierda (horizontal)
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Text(
-                            '2 Items | \$45',
-                            style: TextStyle(
+                          Text(
+                            '$totalItems Items | \$${totalPrice.toStringAsFixed(2)}',
+                            style: const TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           ),
                           const Text(
@@ -111,7 +121,7 @@ class _HomePageState extends State<HomePage> {
                         onPressed: () {},
                         style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.pink,
-                            padding: EdgeInsets.symmetric(
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 24, vertical: 12)),
                         child: const Text('View Cart',
                             style: TextStyle(color: Colors.white))),

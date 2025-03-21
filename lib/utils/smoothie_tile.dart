@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class BurgerTile extends StatelessWidget {
+class SmoothieTile extends StatelessWidget {
   final String donutFlavor;
   final double donutPrice; // Ahora es double en lugar de String
   final dynamic
@@ -9,7 +9,7 @@ class BurgerTile extends StatelessWidget {
   final String donutStore;
   final VoidCallback onAddToCart; // Nueva función para añadir al carrito
 
-  const BurgerTile({
+  const SmoothieTile({
     super.key,
     required this.donutFlavor,
     required this.donutPrice,
