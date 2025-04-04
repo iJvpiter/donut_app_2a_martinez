@@ -5,6 +5,9 @@ import 'package:donut_app_2a_martinez/tabs/pizza_tab.dart';
 import 'package:donut_app_2a_martinez/tabs/smoothie_tab.dart';
 import 'package:donut_app_2a_martinez/utils/my_tab.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'home_page.dart';
+import 'login_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
